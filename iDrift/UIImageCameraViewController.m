@@ -1,11 +1,3 @@
-//
-//  UIImageCameraViewController.m
-//  iDrift
-//
-//  Created by Sophie Jeong on 6/20/15.
-//  Copyright © 2015 CarnegieMellonUniversity. All rights reserved.
-//
-
 #import "UIImageCameraViewController.h"
 
 @interface UIImageCameraViewController ()
@@ -50,26 +42,26 @@
         NSLog(@"Error saving video: %@", error.localizedFailureReason);
 }
  */
-/*
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    // recover video URL
-    NSURL *url = [info objectForKey:UIImagePickerControllerMediaURL];
-    
-    // check if video is compatible with album
-    BOOL compatible = UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(url.path);
-    
-    // save
-    if (compatible)
-        UISaveVideoAtPathToSavedPhotosAlbum(url.path, self, @selector(video:didFinishSavingWithError:contextInfo:), NULL);
-        
-    
 
-        [self dismissModalViewControllerAnimated:YES];
-        imagePickerController = nil;
-    
-}
-*/
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+//{
+//////     recover video URL
+////    NSURL *url = [info objectForKey:UIImagePickerControllerMediaURL];
+////    
+//////     check if video is compatible with album
+////    BOOL compatible = UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(url.path);
+////    
+//////     save
+////    if (compatible)
+////        UISaveVideoAtPathToSavedPhotosAlbum(url.path, self, @selector(video:didFinishSavingWithError:contextInfo:), NULL);
+////        
+////    
+////
+////        [self dismissModalViewControllerAnimated:YES];
+////        imagePickerController = nil;
+//
+//}
+
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker
 {
     [self dismissModalViewControllerAnimated:YES];
@@ -135,7 +127,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     UIImageWriteToSavedPhotosAlbum(selectedImage, self,
                                    @selector(image:didFinishSavingWithError:contextInfo:),
                                    NULL);
-    
+    self.imageView.image = selectedImage;
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -156,6 +148,26 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     // Pass the selected object to the new view controller.
 }
 */
-
+- (NSString *) getCurrentTimeString: (NSDate *) nowDate{
+    
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *dateComponents = [gregorian components:
+                                        (NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay|
+                                         NSCalendarUnitHour  | NSCalendarUnitMinute | NSCalendarUnitSecond)
+                                                    fromDate:nowDate];
+    
+    NSInteger hour = [dateComponents hour];
+    NSInteger minute = [dateComponents minute];
+    NSInteger second = [dateComponents second];
+    
+    NSInteger year = [dateComponents year];
+    NSInteger month = [dateComponents month];
+    NSInteger day = [dateComponents day];
+    
+    return [NSString stringWithFormat:@"%ld-%02ld-%02ld %02ld:%02ld:%02ld",
+            (long)year, (long) month, (long)day,(long)hour, (long)minute, (long)second];
+    
+    
+}
 
 @end

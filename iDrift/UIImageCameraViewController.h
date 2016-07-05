@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface UIImageCameraViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverControllerDelegate>
 {
     UIPopoverController *popoverController;
     UIImagePickerController *imagePickerController;
 }
 - (IBAction)takePhoto:(id)sender;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @end
