@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>eventDate</key>
+	<array>
+		<string>July 5 11am to 12pm</string>
+		<string>July 10 7pm to 11pm</string>
+		<string>July 11-12 to 2014 July 13</string>
+		<string>July 13 5pm to 9pm</string>
+		<string>July 14 5pm to 10pm</string>
+		<string>July 15 11am to 2pm</string>
+		<string>July 15 6pm to 9pm</string>
+		<string>July 16 9am to 3pm</string>
+		<string>July 18-19 9:30am to 5pm</string>
+		<string>July 18-19 9:30am to 5pm</string>
+	</array>
+	<key>eventName</key>
+	<array>
+		<string>Kick-off Rallye</string>
+		<string>Black Tie Gala at Longue Club</string>
+		<string>PVGP Races at Pitt Race Complex</string>
+		<string>Walnut Street Car Show</string>
+		<string>Car Cruise at Waterfront</string>
+		<string>Downtown Parade / Car Display</string>
+		<string>Grand Prix Tune-Up Party</string>
+		<string>Countryside Tour to Coventry Inn</string>
+		<string>Schenley Park Car Show/Race</string>
+		<string>Schenley Park Vintage Races</string>
+	</array>
+</dict>
+</plist>

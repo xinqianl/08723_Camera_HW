@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="O25-Fp-YBk">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Helvetica.ttc">
+            <string>Helvetica</string>
+            <string>Helvetica</string>
+            <string>Helvetica</string>
+            <string>Helvetica</string>
+        </mutableArray>
+    </customFonts>
+    <scenes>
+        <!--Drifting-->
+        <scene sceneID="u8p-lX-Zi4">
+            <objects>
+                <viewController title="Drifting" id="LMj-Eo-64t" customClass="FirstViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LbI-dU-opU"/>
+                        <viewControllerLayoutGuide type="bottom" id="AlV-69-wVa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Oha-3u-RZk">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="What's Drifiting" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="cXq-OP-6TA">
+                                <rect key="frame" x="20" y="132" width="280" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="29"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="200" fixedFrame="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" bouncesZoom="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7K-fn-u7P">
+                                <rect key="frame" x="20" y="199" width="748" height="153"/>
+                                <string key="text">Drifting is a driving technique where the driver intentionally or unintentionally oversteers, causing loss of traction in the rear wheels or all tires, while maintaining control from entry to exit of a corner. (e.g. car is turning left, wheels are pointed right or vice versa AKA opposite lock)</string>
+                                <fontDescription key="fontDescription" type="system" size="system"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ASK-dT-cC8">
+                                <rect key="frame" x="0.0" y="20" width="768" height="44"/>
+                                <items>
+                                    <navigationItem title="iDrifting" id="SdH-kQ-BQI"/>
+                                </items>
+                            </navigationBar>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="drifit.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="7Rt-So-xDW">
+                                <rect key="frame" x="20" y="351" width="712" height="358"/>
+                            </imageView>
+                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTv-9f-D1R">
+                                <rect key="frame" x="740" y="687" width="22" height="22"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="togglePopover:" destination="LMj-Eo-64t" eventType="touchUpInside" id="SmQ-Jj-wIC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Drfting" image="first" id="Xdu-dn-xb6"/>
+                    <navigationItem key="navigationItem" title="iDrifting" id="HAr-lH-DVe"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i2B-Fy-ZPV" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-25" y="-1256"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="gZf-bh-tCq">
+            <objects>
+                <tabBarController id="O25-Fp-YBk" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="JIJ-Mu-jnz">
+                        <rect key="frame" x="0.0" y="431" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="LMj-Eo-64t" kind="relationship" relationship="viewControllers" id="NXD-XD-ejU"/>
+                        <segue destination="yNU-Ip-jxF" kind="relationship" relationship="viewControllers" id="3kY-XV-1kh"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cch-OT-kRx" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1706" y="-4"/>
+        </scene>
+        <!--Drifitng Log-->
+        <scene sceneID="BCD-2d-l3Q">
+            <objects>
+                <navigationController id="yNU-Ip-jxF" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Drifitng Log" image="event-3.png" id="D8U-m8-xtS"/>
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Ami-he-7kj">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="eck-W7-6kO" kind="relationship" relationship="rootViewController" id="eUh-9L-Dwy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SaB-4R-K2t" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-265" y="1460"/>
+        </scene>
+        <!--Master-->
+        <scene sceneID="aoR-P4-dDB">
+            <objects>
+                <tableViewController title="Master" id="eck-W7-6kO" customClass="MasterViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Xkz-ch-f0b">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="yxV-wE-JjV" style="IBUITableViewCellStyleDefault" id="wZZ-rF-oaa">
+                                <rect key="frame" x="0.0" y="86" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wZZ-rF-oaa" id="bGK-Gw-ihZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="682" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yxV-wE-JjV">
+                                            <rect key="frame" x="68" y="0.0" width="614" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="abH-8d-Raf" kind="push" identifier="showDetail" id="czs-42-mmb"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="eck-W7-6kO" id="xkf-l3-uEA"/>
+                            <outlet property="delegate" destination="eck-W7-6kO" id="97X-An-yBC"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Drifting Log" id="QS5-Y1-hCq">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="S7k-Fy-IBV">
+                            <connections>
+                                <segue destination="M2S-Rv-UlY" kind="modal" identifier="addEvent" id="72r-Nm-jOf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iIq-55-fs6" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="635" y="1388"/>
+        </scene>
+        <!--Detail-->
+        <scene sceneID="qrv-w8-FMf">
+            <objects>
+                <viewController title="Detail" id="abH-8d-Raf" customClass="DetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YSG-Yo-XSz"/>
+                        <viewControllerLayoutGuide type="bottom" id="vXX-vx-GjR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Qqb-mp-l5e">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="eventName" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="dBD-8L-CXg">
+                                <rect key="frame" x="115" y="121" width="647" height="29"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="eventTime" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="R4D-Gm-8Q9">
+                                <rect key="frame" x="115" y="169" width="647" height="29"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="eventLocation" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="kfW-TV-ERN">
+                                <rect key="frame" x="115" y="215" width="633" height="29"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I am DRIFITING NOW" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5CG-UJ-R6t">
+                                <rect key="frame" x="91" y="243" width="166" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Event Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3k-bD-xan">
+                                <rect key="frame" x="5" y="68" width="99" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6F-3F-iX8">
+                                <rect key="frame" x="5" y="92" width="83" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Place:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1QF-Dc-mjd">
+                                <rect key="frame" x="5" y="121" width="48" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fC8-1y-IE9">
+                                <rect key="frame" x="0.0" y="243" width="768" height="731"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="Cjd-ir-HKY"/>
+                    <connections>
+                        <outlet property="detailDescriptionLabel" destination="dBD-8L-CXg" id="TE1-J4-sGv"/>
+                        <outlet property="eventLocation" destination="kfW-TV-ERN" id="277-f4-ENV"/>
+                        <outlet property="eventTime" destination="R4D-Gm-8Q9" id="Dbh-IJ-ghf"/>
+                        <outlet property="mapView" destination="fC8-1y-IE9" id="ULq-Tv-ATy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0w8-lf-NQ3" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1985" y="1676"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8mF-MF-Oyf">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="M2S-Rv-UlY" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qmU-x8-RFg">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="rUO-it-Ru0" kind="relationship" relationship="rootViewController" id="KKv-19-Ps6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lHz-L9-ddY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1577" y="498"/>
+        </scene>
+        <!--AddViewController-->
+        <scene sceneID="EQw-Qb-12f">
+            <objects>
+                <viewController storyboardIdentifier="AddViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rUO-it-Ru0" userLabel="AddViewController" customClass="AddViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CWn-KA-UK7"/>
+                        <viewControllerLayoutGuide type="bottom" id="psc-vd-Lft"/>
+                    </layoutGuides>
+                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFill" id="6sB-vI-dKs">
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Event Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mi6-jO-inS">
+                                <rect key="frame" x="20" y="20" width="728" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="rUO-it-Ru0" id="ffk-gb-fxR"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="When otherwise current time" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v6E-hS-Z6S">
+                                <rect key="frame" x="20" y="72" width="728" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="rUO-it-Ru0" id="SNJ-dL-RrO"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Where otherwise current place" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fby-95-YC6">
+                                <rect key="frame" x="20" y="117" width="728" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="rUO-it-Ru0" id="KGp-zQ-8OS"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="mi6-jO-inS" secondAttribute="trailing" constant="20" symbolic="YES" id="Ec5-OA-Fku"/>
+                            <constraint firstItem="mi6-jO-inS" firstAttribute="top" secondItem="6sB-vI-dKs" secondAttribute="top" constant="20" symbolic="YES" id="SBp-Bk-Plt"/>
+                            <constraint firstItem="mi6-jO-inS" firstAttribute="leading" secondItem="6sB-vI-dKs" secondAttribute="leading" constant="20" symbolic="YES" id="V1p-ZE-287"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" title="Add Event" id="0mT-3w-YpT">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="2Yo-Ae-uu6">
+                            <connections>
+                                <action selector="cancel:" destination="rUO-it-Ru0" id="wp5-2F-5gd"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="pdz-AB-kx0">
+                            <connections>
+                                <action selector="save:" destination="rUO-it-Ru0" id="qnf-g4-BBz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="eventLocation" destination="Fby-95-YC6" id="STu-0m-9I8"/>
+                        <outlet property="eventName" destination="mi6-jO-inS" id="5ZZ-4x-EH9"/>
+                        <outlet property="eventTime" destination="v6E-hS-Z6S" id="UBH-eo-FUp"/>
+                        <outlet property="view" destination="6sB-vI-dKs" id="na1-cL-MPT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vFR-bL-pNj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2981" y="416"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="drifit.jpg" width="1024" height="768"/>
+        <image name="event-3.png" width="28" height="29"/>
+        <image name="first" width="30" height="30"/>
+    </resources>
+</document>
