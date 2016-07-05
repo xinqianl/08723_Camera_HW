@@ -57,6 +57,8 @@
 		31F771E31B3989E300D8804E /* UIImageCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F771E21B3989E300D8804E /* UIImageCameraViewController.m */; };
 		31F771E61B399C7700D8804E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 31F771E41B399C7700D8804E /* Icon.png */; };
 		31F771E71B399C7700D8804E /* record-indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 31F771E51B399C7700D8804E /* record-indicator.png */; };
+		411E5C801D2C2E18000482DD /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 411E5C7F1D2C2E18000482DD /* Social.framework */; };
+		411E5C821D2C2E85000482DD /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 411E5C811D2C2E85000482DD /* Twitter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +138,8 @@
 		31F771E21B3989E300D8804E /* UIImageCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageCameraViewController.m; sourceTree = "<group>"; };
 		31F771E41B399C7700D8804E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		31F771E51B399C7700D8804E /* record-indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record-indicator.png"; sourceTree = "<group>"; };
+		411E5C7F1D2C2E18000482DD /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		411E5C811D2C2E85000482DD /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +147,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				411E5C821D2C2E85000482DD /* Twitter.framework in Frameworks */,
+				411E5C801D2C2E18000482DD /* Social.framework in Frameworks */,
 				312190CE1B4569F300364A83 /* Photos.framework in Frameworks */,
 				319893A218FD4FDE001E9969 /* MobileCoreServices.framework in Frameworks */,
 				3198938F18FD4E81001E9969 /* Security.framework in Frameworks */,
@@ -194,6 +200,8 @@
 		3102DD4118E4C0F600FD19F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				411E5C811D2C2E85000482DD /* Twitter.framework */,
+				411E5C7F1D2C2E18000482DD /* Social.framework */,
 				314AEECC1B5709C400127A60 /* CloudKit.framework */,
 				312190CD1B4569F300364A83 /* Photos.framework */,
 				319893A118FD4FDE001E9969 /* MobileCoreServices.framework */,

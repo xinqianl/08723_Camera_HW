@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <Accounts/Accounts.h>
 
 @interface UIImageCameraViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverControllerDelegate>
 {
@@ -16,4 +16,9 @@
 }
 - (IBAction)takePhoto:(id)sender;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+
+@property NSString *info;
+
+
+
 @end

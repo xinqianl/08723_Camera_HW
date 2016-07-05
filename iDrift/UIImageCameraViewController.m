@@ -1,5 +1,7 @@
 #import "UIImageCameraViewController.h"
-
+#import <sys/sysctl.h>
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
 @interface UIImageCameraViewController ()
 
 @end
@@ -8,6 +10,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIButton *tweetButton = [UIButton buttonWithType: UIButtonTypeCustom];
+    
+    tweetButton.frame = CGRectMake(100, 500, 150, 44);
+    
+    [tweetButton addTarget:self
+                    action:@selector (tweetButtonPressed)
+          forControlEvents: UIControlEventTouchUpInside];
+    [tweetButton setTitle:@"Tweet Photo" forState:UIControlStateNormal];
+    [tweetButton setBackgroundColor: [UIColor grayColor]];
+    [self.view addSubview: tweetButton];
+    
     // Do any additional setup after loading the view.
 }
 /*
@@ -127,6 +140,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     UIImageWriteToSavedPhotosAlbum(selectedImage, self,
                                    @selector(image:didFinishSavingWithError:contextInfo:),
                                    NULL);
+    self.info = [NSString stringWithFormat:@"%@%@", @"xinqianl ", [self getCurrentTimeString:[NSDate date]]];
+    
     self.imageView.image = selectedImage;
     [self dismissModalViewControllerAnimated:YES];
 }
@@ -137,6 +152,38 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (void)tweetButtonPressed{
+    if([self checkPhoto]){
+        [self noPhotoAlert];
+        return;
+    }
+    ACAccountStore *twitter = [[ACAccountStore alloc] init];
+    ACAccountType *twAccountType = [twitter accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    
+    [self check];
+    [twitter requestAccessToAccountsWithType:twAccountType options:nil completion:^(BOOL granted, NSError *error)
+     {
+         if (granted)
+         {
+             if (![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]){
+                 [self generateAlert];
+             }
+             else
+             {
+                 SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+                 [tweetSheet setInitialText: self.info];
+                 [tweetSheet addImage:[self.imageView image]];
+                 [self presentViewController:tweetSheet animated:YES completion:nil];
+             }
+             
+         }
+         else
+         {
+             [self permissionAlert];
+         }
+     }];
+    
 }
 
 /*
@@ -170,4 +217,82 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     
 }
 
+-(void) generateAlert{
+    {dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Sorry"
+                                  message:@"Please make sure your device has an internet connection and you have at least one Twitter account setup"
+                                  delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        [alertView show];
+        
+    });
+        return;
+    }
+}
+
+-(void) permissionAlert{
+    NSLog(@"Permission Not Granted");
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Please make sure your device has an internet connection and you have at least one Twitter account setup"
+                              message:nil
+                              delegate:self
+                              cancelButtonTitle:@"Cancel"
+                              otherButtonTitles:@"OK", nil];
+        [alert show];
+        // code here
+    });
+    return;
+}
+-(void)check{
+    ACAccountStore *twitter = [[ACAccountStore alloc] init];
+    ACAccountType *twAccountType = [twitter accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    ACAccount *twAccount = [[ACAccount alloc] initWithAccountType:twAccountType];
+    NSArray *accounts = [twitter accountsWithAccountType:twAccountType];
+    twAccount = [accounts lastObject];
+    NSURL *twitterURL = [[NSURL alloc] initWithString:@"https://api.twitter.com/1.1/statuses/user_timeline.json"];
+    SLRequest *requestUsersTweets = [SLRequest requestForServiceType:SLServiceTypeTwitter
+                                                       requestMethod:SLRequestMethodGET
+                                                                 URL:twitterURL
+                                                          parameters:nil];
+    
+    [requestUsersTweets performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error2)
+     {
+         // The output of the request is placed in the log.
+         NSLog(@"HTTP Response: %i", [urlResponse statusCode]);
+         if([urlResponse statusCode]==0){
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 UIAlertView *alertView = [[UIAlertView alloc]
+                                           initWithTitle:@"Sorry"
+                                           message:@"Please make sure your device has an internet connection and you have at least one Twitter account setup"
+                                           delegate:self
+                                           cancelButtonTitle:@"OK"
+                                           otherButtonTitles:nil];
+                 [alertView show];
+                 return;
+             });
+         }
+     }];
+    
+}
+-(Boolean)checkPhoto{
+    return self.imageView.image == nil;
+}
+-(void) noPhotoAlert{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Please make sure you add a photo."
+                              message:nil
+                              delegate:self
+                              cancelButtonTitle:@"Cancel"
+                              otherButtonTitles:@"OK", nil];
+        [alert show];
+        // code here
+    });
+}
 @end
