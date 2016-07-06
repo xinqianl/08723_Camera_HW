@@ -119,7 +119,14 @@
                   NSArray *timeline = (NSArray*)jsonResponse;
                   for (int i=0; i<[timeline count]; i++) {
                       NSString *text = [[timeline objectAtIndex:i] valueForKey:(@"text")];
-                      
+                      if(i==0){
+                          
+                          NSDictionary *entity= [[timeline objectAtIndex:i] valueForKey:(@"entities")];
+                          NSArray *media        = entity[@"media"];
+                          NSDictionary *media0  = media[0];
+                          NSString *media_url = media0[@"media_url_https"];
+                          NSLog(media_url);
+                      }
                      
                           [self.myArr addObject: text];
                       

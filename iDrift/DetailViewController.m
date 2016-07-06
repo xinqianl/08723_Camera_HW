@@ -56,18 +56,9 @@
 - (void)buttonPressed{
     PhotoViewController *testController = [[PhotoViewController alloc] init];
     [self.navigationController pushViewController:testController animated:YES];
-    NSRange range = [self.tweet rangeOfString:@"https"];
-    NSString *path = [self.tweet substringFromIndex:range.location];
-    NSURL *url = [NSURL URLWithString:path];
-    NSLog(@"%@", path);
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSData *imageData = [NSData dataWithContentsOfURL:url];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // Update the UI
-            testController.photoImageView.image= [UIImage imageWithData:imageData];
-        });
-    });
+    
+    
+    
 }
 /*
 #pragma mark - Navigation
