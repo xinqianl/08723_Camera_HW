@@ -19,10 +19,25 @@
     if(!self.isVideo){
     // Do any additional setup after loading the view.
         [self.assetImageView setImage:self.assetImage];
+//        self.assetImageView.contentMode = UIViewContentModeScaleAspectFit;
+//        self.assetImageView.frame = self.view.frame;
+        CGRect frame =[self.view.window convertRect:self.view.frame
+         fromView:self.assetImageView.superview];
+        [self.view.window addSubview:self.view];
+        self.view.frame = frame;
+        [UIView
+         animateWithDuration:0.2
+         animations:^{
+             self.view.frame = self.view.window.bounds;
+         }];
+        [[UIApplication sharedApplication]
+         setStatusBarHidden:YES
+         withAnimation:UIStatusBarAnimationFade];
     }else{
         
         MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc] initWithContentURL:self.videoURL];
         [self presentMoviePlayerViewControllerAnimated:player];
+        
         
         player.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
         [player.moviePlayer play];

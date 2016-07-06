@@ -1,143 +1,189 @@
-//
-//  SecondViewController.m
-//  TabCombo
-//
-//  Created by Sophie Jeong on 3/26/14.
-//  Copyright (c) 2014 CarnegieMellonUniversity. All rights reserved.
-//
-
 #import "SecondViewController.h"
+#import "DetailViewController.h"
 
 @interface SecondViewController ()
 
+@property NSMutableArray *objects;
 @end
 
 @implementation SecondViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad {
+     [super viewDidLoad];
+    self.myArr=[[NSMutableArray alloc]init];
     
-    /*
-    _car1 = [[Car alloc] init];
-    _car2 = [[Car alloc] init];
-    
-	// Do any additional setup after loading the view, typically from a nib.
-    
-    
-    _car1.maker = _maker1.text;
-    _car1.model = _model1.text;
-    
-    _car2.maker = _maker2.text;
-    _car2.model = _model2.text;
-    
-    _answer.text = @" ";
-     
-     */
-    
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"IDrift" ofType:@"mp4"];
-    NSURL *url = [NSURL fileURLWithPath:filePath];
-    
-    NSURLRequest *fileRequest = [NSURLRequest requestWithURL:url];
-    NSString *urlRequest =@"http://imposing-mind-552.appspot.com";
-   // [self.webView loadRequest:fileRequest];
-    
-     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlRequest]]];
-    
-    _webView.mediaPlaybackRequiresUserAction = NO;
-    _webView.allowsInlineMediaPlayback = YES;
-    _webView.mediaPlaybackAllowsAirPlay = YES;
-  
-    
-
+    [self readTweet];
+//    NSLog(@"%@",self.myArr);
+   
 }
-#pragma mark UIWebViewDelegate
-
-
-
-
-- (void)webViewDidStartLoad:(UIWebView *)webView
-{
-	// starting the load, show the activity indicator in the status bar
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
-	// finished loading, hide the activity indicator in the status bar
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-}
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    
-	self.webView = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.webView.delegate = self;	// setup the delegate as the web view is shown
+    self.myArr=[[NSMutableArray alloc]init];
+    
+    [self readTweet];
+//    NSLog(@"%@",self.myArr);
+}
+- (void)didReceiveMemoryWarning {
+    [self readTweet];
+    [super didReceiveMemoryWarning];
+   }
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+#warning Potentially incomplete method implementation.
+   
+    return 1;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+#warning Incomplete method implementation.
+   
+    return self.myArr.count;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    NSString *tweet = [self.myArr objectAtIndex:indexPath.row];
+//    if(![tweet containsString:@"https"]){
+        cell.textLabel.text =tweet;
+//    }else{
+//        NSRange range = [tweet rangeOfString:@"https"];
+//    UIButton *sampleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    sampleButton.frame = CGRectZero;
+//    [sampleButton setTitle:[tweet substringFromIndex:range.location] forState:UIControlStateNormal];
+//    [cell.contentView addSubview:sampleButton];
+//    
+//    cell.textLabel.text =[tweet substringToIndex:range.location];;
+//    }
+    return cell;
     
 }
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-    [self.webView stopLoading];	// in case the web view is still loading its content
-	self.webView.delegate = nil;	// disconnect the delegate as the webview is hidden
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-}
-
-- (IBAction)tab1:(id)sender {
-    
-    if ([_car1 canDrift])
-        _answer.text = @"can drift.";
-    
-    else {
-        _answer.text=[@"Can't.  It is FWD: " stringByAppendingFormat:
-                      @" %@  %@ ", _car1.maker, _car1.model];
-        NSLog(@"not drift");
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+        
+        NSLog(@"showDetail");
+        
+        self.detailViewController = [segue destinationViewController];
+       
         
     }
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.detailViewController.tweet = self.myArr[indexPath.row];
+    NSLog(@"%@", self.myArr[indexPath.row]);
+   
+}
+- (void)readTweet {
+    
+    NSArray *tweets = [[NSArray alloc]init];
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = CGPointMake(160, 140);
+    spinner.hidesWhenStopped = YES;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
+    ACAccountStore *twitter = [[ACAccountStore alloc] init];
+    ACAccountType *twAccountType = [twitter accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    
+    // Request Access to the twitter account
+    [twitter requestAccessToAccountsWithType:twAccountType options:nil completion:^(BOOL granted, NSError *error)
+     {
+         if (granted)
+         {
+             if (![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]){
+                 [self generateAlert];
+                 return;
+             }
+             ACAccount *twAccount = [[ACAccount alloc] initWithAccountType:twAccountType];
+             NSArray *accounts = [twitter accountsWithAccountType:twAccountType];
+             twAccount = [accounts lastObject];
+             NSURL *twitterURL = [[NSURL alloc] initWithString:@"https://api.twitter.com/1.1/statuses/user_timeline.json"];
+             SLRequest *requestUsersTweets = [SLRequest requestForServiceType:SLServiceTypeTwitter
+                                                                requestMethod:SLRequestMethodGET
+                                                                          URL:twitterURL
+                                                                   parameters:nil];
+             
+             [requestUsersTweets setAccount:twAccount];
+             [requestUsersTweets performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error2)
+              {
+//                  NSLog(@"HTTP Response: %i", [urlResponse statusCode]);
+                  if([urlResponse statusCode]!=200){
+                      [self noResponseAlert];
+                      return;
+                  }
+                  if([urlResponse statusCode]==200){
+                  NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+                  NSArray *timeline = (NSArray*)jsonResponse;
+                  for (int i=0; i<[timeline count]; i++) {
+                      NSString *text = [[timeline objectAtIndex:i] valueForKey:(@"text")];
+                      
+                     
+                          [self.myArr addObject: text];
+                      
+                  }
+//                  NSLog(@"%@",self.myArr);
+                  dispatch_async(dispatch_get_main_queue(), ^{
+                      [self.tableView reloadData];
+                  });
+                  }
+                  
+              }
+              ];
+//             NSLog(@"%@",self.myArr);
+             twAccount = nil;
+             accounts = nil;
+             twitterURL = nil;
+             requestUsersTweets = nil;
+         }
+         else
+         {
+             [self permissionAlert];
+         }
+     }];
+    [spinner stopAnimating];
+    twAccountType = nil;
 
-- (IBAction)tab2:(id)sender {
-    
-    if ([_car2 canDrift]){
-        _answer.text=[@"Yes it can. It is RWD:" stringByAppendingFormat:
-                      @" %@  %@", _car2.maker, _car2.model];
-    }
-    
-    
-    else _answer.text=@"can't drift.";;
 }
 
+-(void)generateAlert{
+    dispatch_async(dispatch_get_main_queue(), ^{
+    UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Sorry"
+                                  message:@"Please make sure your device has an internet connection and you have at least one Twitter account setup"
+                                  delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+    [alertView show];
+    return;});
 
-
+}
+-(void) permissionAlert{
+    NSLog(@"Permission Not Granted");
+    dispatch_async(dispatch_get_main_queue(), ^{
+    UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Please make sure your device has an internet connection and you have at least one Twitter account setup"
+                              message:nil
+                              delegate:self
+                              cancelButtonTitle:@"Cancel"
+                              otherButtonTitles:@"OK", nil];
+    [alert show];
+    });
+    return;
+}
+-(void) noResponseAlert{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Sorry"
+                                  message:@"Please make sure your device has an internet connection and you have at least one Twitter account setup"
+                                  delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        [alertView show];
+        return;
+    });
+}
 @end
+

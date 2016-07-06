@@ -91,6 +91,7 @@
         UIImage *img =
         [UIImage imageWithCGImage:[rep fullScreenImage]];
         
+        
         [aVC setAssetImage:img];
         }
     }

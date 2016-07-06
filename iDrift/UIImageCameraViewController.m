@@ -140,7 +140,10 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     UIImageWriteToSavedPhotosAlbum(selectedImage, self,
                                    @selector(image:didFinishSavingWithError:contextInfo:),
                                    NULL);
-    self.info = [NSString stringWithFormat:@"%@%@", @"xinqianl ", [self getCurrentTimeString:[NSDate date]]];
+    NSString *localDate = [self getCurrentTimeString:([NSDate date])];
+    NSString *timeZoneName = [[NSTimeZone systemTimeZone] abbreviation];
+    NSString *curDate = [NSString stringWithFormat:@"%@%@%@", localDate, @" ", timeZoneName];
+    self.info = [NSString stringWithFormat:@"%@%@", @"xinqianl ", curDate];
     
     self.imageView.image = selectedImage;
     [self dismissModalViewControllerAnimated:YES];

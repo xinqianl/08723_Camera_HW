@@ -59,6 +59,10 @@
 		31F771E71B399C7700D8804E /* record-indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 31F771E51B399C7700D8804E /* record-indicator.png */; };
 		411E5C801D2C2E18000482DD /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 411E5C7F1D2C2E18000482DD /* Social.framework */; };
 		411E5C821D2C2E85000482DD /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 411E5C811D2C2E85000482DD /* Twitter.framework */; };
+		411E5C881D2C426D000482DD /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 411E5C861D2C426D000482DD /* SecondViewController.m */; };
+		411E5C8B1D2C6A4A000482DD /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 411E5C8A1D2C6A4A000482DD /* DetailViewController.m */; };
+		411E5C8E1D2D8DB8000482DD /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 411E5C8D1D2D8DB8000482DD /* PhotoViewController.m */; };
+		411E5C911D2D9CE9000482DD /* CustomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 411E5C901D2D9CE9000482DD /* CustomViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +144,14 @@
 		31F771E51B399C7700D8804E /* record-indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record-indicator.png"; sourceTree = "<group>"; };
 		411E5C7F1D2C2E18000482DD /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		411E5C811D2C2E85000482DD /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		411E5C851D2C426D000482DD /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		411E5C861D2C426D000482DD /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		411E5C891D2C6A4A000482DD /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		411E5C8A1D2C6A4A000482DD /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		411E5C8C1D2D8DB8000482DD /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		411E5C8D1D2D8DB8000482DD /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		411E5C8F1D2D9CE9000482DD /* CustomViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewCell.h; sourceTree = "<group>"; };
+		411E5C901D2D9CE9000482DD /* CustomViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +312,8 @@
 		31DCD0D918EA361000A35285 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				411E5C851D2C426D000482DD /* SecondViewController.h */,
+				411E5C861D2C426D000482DD /* SecondViewController.m */,
 				31F771D61B395AE400D8804E /* FlipsideViewController.h */,
 				31F771D51B395AE400D8804E /* FlipsideViewController.m */,
 				31F771DB1B3983F400D8804E /* AAPLCameraViewController.h */,
@@ -320,6 +334,12 @@
 				3175F1311D21CC1200A00223 /* AssetLibraryViewController.m */,
 				319703E21D21D35700E23D59 /* AssetGroupTableCell.h */,
 				319703E31D21D35700E23D59 /* AssetGroupTableCell.m */,
+				411E5C891D2C6A4A000482DD /* DetailViewController.h */,
+				411E5C8A1D2C6A4A000482DD /* DetailViewController.m */,
+				411E5C8C1D2D8DB8000482DD /* PhotoViewController.h */,
+				411E5C8D1D2D8DB8000482DD /* PhotoViewController.m */,
+				411E5C8F1D2D9CE9000482DD /* CustomViewCell.h */,
+				411E5C901D2D9CE9000482DD /* CustomViewCell.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -445,17 +465,21 @@
 			files = (
 				31F771E31B3989E300D8804E /* UIImageCameraViewController.m in Sources */,
 				317EC58B18EFA4F300313E70 /* EventLog.xcdatamodeld in Sources */,
+				411E5C8B1D2C6A4A000482DD /* DetailViewController.m in Sources */,
 				31F771E01B3983F400D8804E /* AAPLPreviewView.m in Sources */,
 				3175F12C1D21CBE500A00223 /* AssetViewController.m in Sources */,
 				3102DD5318E4C0F600FD19F2 /* AppDelegate.m in Sources */,
 				3175F1321D21CC1200A00223 /* AssetLibraryViewController.m in Sources */,
+				411E5C911D2D9CE9000482DD /* CustomViewCell.m in Sources */,
 				3102DD5C18E4C0F600FD19F2 /* FirstViewController.m in Sources */,
 				3175F12F1D21CC0200A00223 /* AssetGroupViewController.m in Sources */,
 				318FFF6B18FFB4E600819D7B /* EventAnnotation.m in Sources */,
 				3102DD8F18E4C1FA00FD19F2 /* Car.m in Sources */,
+				411E5C881D2C426D000482DD /* SecondViewController.m in Sources */,
 				317EC58E18EFA52800313E70 /* EventLog.m in Sources */,
 				31F771D71B395AE400D8804E /* FlipsideViewController.m in Sources */,
 				3102DD4F18E4C0F600FD19F2 /* main.m in Sources */,
+				411E5C8E1D2D8DB8000482DD /* PhotoViewController.m in Sources */,
 				31F771DF1B3983F400D8804E /* AAPLCameraViewController.m in Sources */,
 				319703E41D21D35700E23D59 /* AssetGroupTableCell.m in Sources */,
 			);
