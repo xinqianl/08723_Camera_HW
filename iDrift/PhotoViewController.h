@@ -10,5 +10,6 @@
 
 @interface PhotoViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIImageView *photoImageView;
+@property (weak, nonatomic) NSString *imageURL;
 
 @end

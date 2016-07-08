@@ -16,14 +16,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: @"https://pbs.twimg.com/media/CmpvKcrWgAAKM34.jpg"]];
+    NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: self.imageURL]];
     UIImageView *imView = [[UIImageView alloc] initWithImage:[UIImage imageWithData: imageData]];
     imView.frame = [[UIScreen mainScreen] applicationFrame];
     [self.view addSubview:imView];
     CATransition *animation = [CATransition animation];
     [animation setType:kCATransitionFade];
     [[self.view.window layer] addAnimation:animation forKey:@"layerAnimation"];
-    [self.tabBarController.tabBar setHidden:YES];
+//    [self.tabBarController.tabBar setHidden:YES];
     
     // Do any additional setup after loading the view.
 }

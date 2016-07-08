@@ -1,5 +1,7 @@
 #import "SecondViewController.h"
 #import "DetailViewController.h"
+#import "CustomViewCell.h"
+#import "PhotoViewController.h"
 
 @interface SecondViewController ()
 
@@ -13,6 +15,8 @@
     self.myArr=[[NSMutableArray alloc]init];
     
     [self readTweet];
+    
+    [self.tableView registerClass:[CustomViewCell class]forCellReuseIdentifier: @"Cell"];
 //    NSLog(@"%@",self.myArr);
    
 }
@@ -45,22 +49,32 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    NSString *tweet = [self.myArr objectAtIndex:indexPath.row];
-//    if(![tweet containsString:@"https"]){
-        cell.textLabel.text =tweet;
-//    }else{
-//        NSRange range = [tweet rangeOfString:@"https"];
-//    UIButton *sampleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    sampleButton.frame = CGRectZero;
-//    [sampleButton setTitle:[tweet substringFromIndex:range.location] forState:UIControlStateNormal];
-//    [cell.contentView addSubview:sampleButton];
-//    
-//    cell.textLabel.text =[tweet substringToIndex:range.location];;
-//    }
+    CustomViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    NSString *tweet = [[self.myArr objectAtIndex:indexPath.row] valueForKey:(@"text")];
+    NSDictionary *entity= [[self.myArr objectAtIndex:indexPath.row] valueForKey:(@"entities")];
+    NSArray *media        = entity[@"media"];
+    NSDictionary *media0  = media[0];
+    NSString *image = media0[@"media_url_https"];
+    
+   
+
+    cell.tweet = tweet;
+    cell.image = image;
+    UIButton *linkButton = cell.link;
+    if(image==nil || image.length==0){
+        [linkButton setHidden:YES];
+    }else{
+        [linkButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    }
     return cell;
     
 }
+- (void)buttonPressed:(UIButton*) sender {
+    PhotoViewController *testController = [[PhotoViewController alloc] init];
+    [self.navigationController pushViewController:testController animated:YES];
+    testController.imageURL = sender.titleLabel.text;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         
@@ -73,8 +87,18 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.detailViewController.tweet = self.myArr[indexPath.row];
-    NSLog(@"%@", self.myArr[indexPath.row]);
+    self.detailViewController = [[DetailViewController alloc]init];
+    self.detailViewController.tweet = [[self.myArr objectAtIndex:indexPath.row] valueForKey:(@"text")];
+    NSLog(self.detailViewController.tweet);
+    NSDictionary *entity= [[self.myArr objectAtIndex:indexPath.row] valueForKey:(@"entities")];
+    NSArray *media        = entity[@"media"];
+    NSDictionary *media0  = media[0];
+    
+    
+    self.detailViewController.imageURL =media0[@"media_url_https"];
+    
+
+    [self.navigationController pushViewController:self.detailViewController animated:YES];
    
 }
 - (void)readTweet {
@@ -116,21 +140,21 @@
                   }
                   if([urlResponse statusCode]==200){
                   NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
-                  NSArray *timeline = (NSArray*)jsonResponse;
-                  for (int i=0; i<[timeline count]; i++) {
-                      NSString *text = [[timeline objectAtIndex:i] valueForKey:(@"text")];
-                      if(i==0){
-                          
-                          NSDictionary *entity= [[timeline objectAtIndex:i] valueForKey:(@"entities")];
-                          NSArray *media        = entity[@"media"];
-                          NSDictionary *media0  = media[0];
-                          NSString *media_url = media0[@"media_url_https"];
-                          NSLog(media_url);
-                      }
-                     
-                          [self.myArr addObject: text];
+                  self.myArr = (NSArray*)jsonResponse;
+//                  for (int i=0; i<[timeline count]; i++) {
+//                      NSString *text = [[timeline objectAtIndex:i] valueForKey:(@"text")];
+//                      
+//                          
+//                          NSDictionary *entity= [[timeline objectAtIndex:i] valueForKey:(@"entities")];
+//                          NSArray *media        = entity[@"media"];
+//                          NSDictionary *media0  = media[0];
+//                          NSString *media_url = media0[@"media_url_https"];
+//                          NSLog(media_url);
                       
-                  }
+                     
+//                          [self.myArr addObject: text];
+                      
+//                  }
 //                  NSLog(@"%@",self.myArr);
                   dispatch_async(dispatch_get_main_queue(), ^{
                       [self.tableView reloadData];

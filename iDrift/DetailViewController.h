@@ -11,5 +11,6 @@
 @interface DetailViewController : UIViewController
 
 @property (weak, nonatomic) NSString *tweet;
+@property (weak, nonatomic) NSString *imageURL;
 
 @end

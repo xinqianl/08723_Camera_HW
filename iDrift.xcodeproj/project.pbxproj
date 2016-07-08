@@ -43,7 +43,6 @@
 		318CA2F21B42B3270005B90A /* tweetButton.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 318CA2F11B42B3270005B90A /* tweetButton.jpg */; };
 		318CA2F41B42B37C0005B90A /* tweet.png in Resources */ = {isa = PBXBuildFile; fileRef = 318CA2F31B42B37C0005B90A /* tweet.png */; };
 		318FFF6B18FFB4E600819D7B /* EventAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 318FFF6A18FFB4E600819D7B /* EventAnnotation.m */; };
-		3192FCD51906A9280030C2A6 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3192FCD41906A9280030C2A6 /* Main_iPad.storyboard */; };
 		319703E41D21D35700E23D59 /* AssetGroupTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 319703E31D21D35700E23D59 /* AssetGroupTableCell.m */; };
 		3198938D18FD4E78001E9969 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3198938C18FD4E78001E9969 /* SystemConfiguration.framework */; };
 		3198938F18FD4E81001E9969 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3198938E18FD4E81001E9969 /* Security.framework */; };
@@ -123,7 +122,6 @@
 		318CA2F31B42B37C0005B90A /* tweet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tweet.png; sourceTree = "<group>"; };
 		318FFF6918FFB4E600819D7B /* EventAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventAnnotation.h; sourceTree = "<group>"; };
 		318FFF6A18FFB4E600819D7B /* EventAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventAnnotation.m; sourceTree = "<group>"; };
-		3192FCD41906A9280030C2A6 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		319703E21D21D35700E23D59 /* AssetGroupTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetGroupTableCell.h; sourceTree = "<group>"; };
 		319703E31D21D35700E23D59 /* AssetGroupTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetGroupTableCell.m; sourceTree = "<group>"; };
 		3198938C18FD4E78001E9969 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -304,7 +302,6 @@
 			isa = PBXGroup;
 			children = (
 				3102DD5418E4C0F600FD19F2 /* Main_iPhone.storyboard */,
-				3192FCD41906A9280030C2A6 /* Main_iPad.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -442,7 +439,6 @@
 				31F771D41B39597700D8804E /* IDrift.mp4 in Resources */,
 				3102DD4D18E4C0F600FD19F2 /* InfoPlist.strings in Resources */,
 				31F771E61B399C7700D8804E /* Icon.png in Resources */,
-				3192FCD51906A9280030C2A6 /* Main_iPad.storyboard in Resources */,
 				317EC5A018F3909F00313E70 /* idrift.png in Resources */,
 				314AEE7D1B548B4100127A60 /* button-add_to_google_calendar.png in Resources */,
 			);
