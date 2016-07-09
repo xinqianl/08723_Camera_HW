@@ -40,7 +40,7 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    //how to use media_url_https refers to http://stackoverflow.com/questions/13493137/ios-twitter-api-json-parsing
     CustomViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     NSString *tweet = [[self.myArr objectAtIndex:indexPath.row] valueForKey:(@"text")];
     NSDictionary *entity= [[self.myArr objectAtIndex:indexPath.row] valueForKey:(@"entities")];
