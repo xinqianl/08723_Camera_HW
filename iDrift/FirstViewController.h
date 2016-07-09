@@ -1,23 +1,19 @@
 //
-//  FirstViewController.h
-//  TabCombo
+//  AssetLibraryViewController.h
+//  iDrift
 //
-//  Created by Sophie Jeong on 3/26/14.
-//  Copyright (c) 2014 CarnegieMellonUniversity. All rights reserved.
+//  Created by Sophie Jeong on 6/27/16.
+//  Copyright © 2016 CarnegieMellonUniversity. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "FlipsideViewController.h"
-#import <MediaPlayer/MediaPlayer.h>
 
+@interface FirstViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 
+@property (nonatomic, strong) NSArray *assetGroupArray;
+@property (nonatomic, strong) IBOutlet UITableView *assetGroupTableView;
+@property (nonatomic, strong) NSURL *selectedGroupURL;
 
-
-@interface FirstViewController : UIViewController<FlipsideViewControllerDelegate, UIPopoverControllerDelegate>
-
-@property (strong, nonatomic) UIPopoverController *flipsidePopoverController;
-- (IBAction)togglePopover:(id)sender;
-
-- (IBAction)startPlay:(id)sender;
+- (void)setupAssetData;
 
 @end

@@ -69,30 +69,21 @@
         [_assetArray objectAtIndex:indexForAsset];
         AssetViewController *aVC =
         segue.destinationViewController;
-        
+        //to judge ALAsset type, it's referred to http://stackoverflow.com/questions/17191701/how-to-know-whether-alasset-url-contains-video-or-image
         if ([[selectedAsset valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypeVideo]) {
             
             NSLog(@"See Asset: %@", [[selectedAsset defaultRepresentation] url]);
-//
-            NSURL *myURL = [[selectedAsset defaultRepresentation] url];
-            aVC.isVideo = YES;
-            aVC.videoURL = myURL;
-         
+
+            NSURL *videoURL = [[selectedAsset defaultRepresentation] url];
+            aVC.isPlayingVideo = YES;
+            aVC.videoURL = videoURL;
             NSLog(@"VIEW VIDEO");
-            
         }else{
             NSLog(@"VIEW IMAGE");
-            aVC.isVideo = NO;
-        
-        ALAssetRepresentation *rep =
-        [selectedAsset defaultRepresentation];
-        
-        
-        UIImage *img =
-        [UIImage imageWithCGImage:[rep fullScreenImage]];
-        
-        
-        [aVC setAssetImage:img];
+            aVC.isPlayingVideo = NO;
+            ALAssetRepresentation *rep = [selectedAsset defaultRepresentation];
+            UIImage *img = [UIImage imageWithCGImage:[rep fullScreenImage]];
+            [aVC setAssetImage:img];
         }
     }
 }

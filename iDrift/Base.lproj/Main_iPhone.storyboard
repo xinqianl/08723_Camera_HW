@@ -45,7 +45,7 @@
         <!--Record-->
         <scene sceneID="hVT-XP-zbh">
             <objects>
-                <viewController title="Record" wantsFullScreenLayout="YES" id="kxr-Li-Egy" customClass="UIImageCameraViewController" sceneMemberID="viewController">
+                <viewController title="Record" wantsFullScreenLayout="YES" id="kxr-Li-Egy" customClass="SecondViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3sE-14-nlz"/>
                         <viewControllerLayoutGuide type="bottom" id="CfA-DD-tSD"/>
@@ -86,22 +86,19 @@
         <!--Tweet Table-->
         <scene sceneID="8ma-Oy-1jE">
             <objects>
-                <tableViewController storyboardIdentifier="Tweet Table" title="Tweet Table" id="U0n-ec-d6Y" customClass="SecondViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" id="aBv-os-EVC">
+                <tableViewController storyboardIdentifier="Tweet Table" title="Tweet Table" id="U0n-ec-d6Y" customClass="ThirdViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="115" sectionHeaderHeight="28" sectionFooterHeight="28" id="aBv-os-EVC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" rowHeight="88" id="L2t-gI-VLU" customClass="CustomViewCell">
-                                <rect key="frame" x="0.0" y="92" width="320" height="88"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" rowHeight="115" id="L2t-gI-VLU" customClass="CustomViewCell">
+                                <rect key="frame" x="0.0" y="92" width="320" height="115"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L2t-gI-VLU" id="sxT-h3-qTH">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="87"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="114"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="Hai-Zr-ajr" kind="push" identifier="showDetail" id="tJ1-i6-wgc"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -180,7 +177,7 @@
         <!--Albums-->
         <scene sceneID="tbP-KR-VXj">
             <objects>
-                <viewController id="aHp-JP-3Ig" customClass="AssetLibraryViewController" sceneMemberID="viewController">
+                <viewController id="aHp-JP-3Ig" customClass="FirstViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KaW-vT-ZhB"/>
                         <viewControllerLayoutGuide type="bottom" id="vFm-K3-5dW"/>

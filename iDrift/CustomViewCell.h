@@ -11,6 +11,6 @@
 @interface CustomViewCell : UITableViewCell
 @property (copy, nonatomic) NSString *tweet;
 @property (copy, nonatomic) NSString *image;
-@property (copy, nonatomic) UILabel *tweetLabel;
+@property (copy, nonatomic) UITextView *tweetLabel;
 @property (copy, nonatomic) UIButton *link;
 @end

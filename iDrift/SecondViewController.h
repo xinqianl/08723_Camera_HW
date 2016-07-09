@@ -1,23 +1,24 @@
 //
-//  MasterViewController.h
-//  Test0529
+//  UIImageCameraViewController.h
+//  iDrift
 //
-//  Created by Sophie Jeong on 5/31/16.
-//  Copyright (c) 2016 CarnegieMellonUniversity. All rights reserved.
+//  Created by Sophie Jeong on 6/20/15.
+//  Copyright © 2015 CarnegieMellonUniversity. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import <Social/Social.h>
 #import <Accounts/Accounts.h>
-#import "DetailViewController.h"
+
+@interface SecondViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverControllerDelegate>
+{
+    UIPopoverController *popoverController;
+    UIImagePickerController *imagePickerController;
+}
+- (IBAction)takePhoto:(id)sender;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+
+@property NSString *info;
 
 
-@class EventDetailViewController;
-
-@interface SecondViewController : UITableViewController
-
-@property (strong, nonatomic) DetailViewController *detailViewController;
-@property (strong, nonatomic) NSMutableArray *myArr;
 
 @end
-

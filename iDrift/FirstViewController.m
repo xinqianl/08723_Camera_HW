@@ -1,5 +1,14 @@
-#import "FirstViewController.h"
+//
+//  AssetLibraryViewController.m
+//  iDrift
+//
+//  Created by Sophie Jeong on 6/27/16.
+//  Copyright © 2016 CarnegieMellonUniversity. All rights reserved.
+//
 
+#import "FirstViewController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import "AssetGroupViewController.h"
 
 
 @interface FirstViewController ()
@@ -8,125 +17,175 @@
 
 @implementation FirstViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	
+    [self setTitle:@"Asset Groups"];
+    // Do any additional setup after loading the view.
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self setupAssetData];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Flipside View Controller
+/*
+#pragma mark - Navigation
 
-//- (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller
-//{
-//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-//        [self dismissViewControllerAnimated:YES completion:nil];
-//    } else {
-//        [self.flipsidePopoverController dismissPopoverAnimated:YES];
-//    }
-//}
-//
-//- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
-//{
-//    self.flipsidePopoverController = nil;
-//}
-//
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    if ([[segue identifier] isEqualToString:@"showAlternate"]) {
-//        [[segue destinationViewController] setDelegate:self];
-//        
-//        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-//            UIPopoverController *popoverController = [(UIStoryboardPopoverSegue *)segue popoverController];
-//            self.flipsidePopoverController = popoverController;
-//            popoverController.delegate = self;
-//        }
-//    }
-//}
-//
-//- (IBAction)togglePopover:(id)sender {
-//    if (self.flipsidePopoverController) {
-//        [self.flipsidePopoverController dismissPopoverAnimated:YES];
-//        self.flipsidePopoverController = nil;
-//    } else {
-//        [self performSegueWithIdentifier:@"showAlternate" sender:sender];
-//    }
-//}
-
-- (IBAction)startPlay:(id)sender  {
-    
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"IDrift" ofType:@"mp4"];
-    
-    MPMoviePlayerViewController *theMovieController=[[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:path]] ;
-    NSLog(@"%@", [NSURL fileURLWithPath:path]);
-    
-    [theMovieController.view setFrame:CGRectMake(0, 44, 320, 270)];
-    
-    [theMovieController.view setTransform:CGAffineTransformMakeRotation(M_PI_2)];
-    [self.view addSubview: theMovieController.view];
-    //
-    
-    // Create a new movie player object.
-    MPMoviePlayerController *mp = [theMovieController moviePlayer];
-    
-    [mp prepareToPlay];
-    mp.controlStyle = MPMovieControlStyleNone;
-    //[mp setControlStyle:2];
-    //[mp setScalingMode:MPMovieScalingModeFill];
-    [mp setFullscreen:YES animated:YES];
-    
-    // Register for the playback finished notification
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playbackFinishedCallback:)
-     
-                                                 name:MPMoviePlayerPlaybackDidFinishNotification object:mp];
-    [mp play];
-    
-    
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
+*/
 
-- (void)playbackFinishedCallback:(NSNotification *)notification {
-    
-    MPMoviePlayerViewController *mpviewController = [notification object];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:mpviewController];
-    
-    [mpviewController.view removeFromSuperview];
-}
 
-- (void)moviePlaybackComplete:(NSNotification *)notification
+#pragma mark - Segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue
+                 sender:(id)sender
 {
-    //NSLog(notification.name);
-    MPMoviePlayerController *moviePlayerController = [notification object];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:MPMoviePlayerPlaybackDidFinishNotification
-                                                  object:nil];
-    
-    [moviePlayerController.view removeFromSuperview];
-    //[moviePlayerController release];
-}
--(void)myMovieFinishedCallback:(NSNotification*)aNotification
-{
-    //NSLog(aNotification.name);
-    MPMoviePlayerController* theMovie=[aNotification object];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:theMovie];
-    // [theMovie release]; no more ARC
-    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:YES];
-    
+    if ([segue.identifier isEqualToString:@"ViewAssetGroup"])
+    {
+        NSIndexPath *indexPath =
+        [_assetGroupTableView indexPathForSelectedRow];
+        
+        NSDictionary *selectedDict =
+        [_assetGroupArray objectAtIndex:indexPath.row];
+        
+        [self setSelectedGroupURL:
+         [selectedDict objectForKey:@"groupURL"]];
+        
+        AssetGroupViewController *aVC =
+        segue.destinationViewController;
+        
+        [aVC setAssetGroupURL:[self selectedGroupURL]];
+        
+        [aVC setAssetGroupName:
+         [selectedDict objectForKey:@"groupLabelText"]];
+        
+        [_assetGroupTableView
+         deselectRowAtIndexPath:indexPath animated:NO];
+    }
 }
 
-- (void)viewDidDisappear{
+#pragma mark - Table methods
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
+{
+    NSInteger returnCount = 0;
     
-    
-    
+    if (_assetGroupArray) {
+        returnCount = [_assetGroupArray count];
+    }
+    return returnCount;
 }
 
-- (void)dealloc
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    //NSString *cellID = @"AssetLibraryTableCell";
+    //AssetLibraryTableCell *cell = (AssetLibraryTableCell *)
+    //[tableView dequeueReusableCellWithIdentifier:cellID];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AssetLibraryTableCell" forIndexPath:indexPath];
+    
+    
+    NSDictionary *cellDict =
+    [_assetGroupArray objectAtIndex:indexPath.row];
+    
+    [cell.textLabel
+     setText:[cellDict objectForKey:@"groupLabelText"]];
+    
+    [cell.detailTextLabel
+
+     setText:[cellDict objectForKey:@"groupInfoText"]];
+    
+    [cell.imageView
+     setImage:[cellDict objectForKey:@"groupPosterImage"]];
+    
+    return cell;
+}
+
+#pragma mark - View lifecycle
+
+- (void)setupAssetData
+{
+    ALAssetsLibrary *al =
+    [[ALAssetsLibrary alloc] init];
+    
+    NSMutableArray *setupArray = [[NSMutableArray alloc] init];
+    
+    void (^enumerateAssetGroupsBlock)(ALAssetsGroup*, BOOL*) =
+    ^(ALAssetsGroup* group, BOOL* stop) {
+        if (group)
+        {
+            NSUInteger numAssets = [group numberOfAssets];
+            
+            NSString *groupName =
+            [group valueForProperty:ALAssetsGroupPropertyName];
+            NSLog(@"Group: %@, editable: %d",groupName, [group isEditable]);
+            
+            NSURL *groupURL =
+            [group valueForProperty:ALAssetsGroupPropertyURL];
+            
+            NSString *groupLabelText =
+            [NSString stringWithFormat:@"%@ (%d)",groupName, numAssets];
+            
+            UIImage *posterImage =
+            [UIImage imageWithCGImage:[group posterImage]];
+            
+            [group setAssetsFilter:[ALAssetsFilter allPhotos]];
+            NSInteger groupPhotos = [group numberOfAssets];
+            
+            [group setAssetsFilter:[ALAssetsFilter allVideos]];
+            NSInteger groupVideos = [group numberOfAssets];
+            
+            NSString *info = @"%d photos, %d videos in group";
+            NSString *groupInfoText =
+            [NSString stringWithFormat:info ,groupPhotos, groupVideos];
+            
+            NSDictionary *groupDict =
+            @{@"groupLabelText": groupLabelText,
+             @"groupURL":groupURL,
+              @"groupPosterImage":posterImage,
+              @"groupInfoText":groupInfoText};
+            
+            [setupArray addObject:groupDict];
+        }
+        else
+        {
+            [self setAssetGroupArray:
+             [NSArray arrayWithArray:setupArray]];
+            
+            [_assetGroupTableView reloadData];
+        }
+    };
+    
+    void (^assetGroupEnumErrorBlock)(NSError*) =
+    ^(NSError* error) {
+        
+        NSString *msgError =
+        @"Cannot access asset library groups. \n"
+        "Visit Privacy | Photos in Settings.app \n"
+        "to restore permission.";
+        
+        UIAlertView* alertView =
+        [[UIAlertView alloc] initWithTitle:nil
+                                   message:msgError
+                                  delegate:self
+                         cancelButtonTitle:@"OK"
+                         otherButtonTitles:nil];
+        
+        [alertView show];
+    };
+    
+    [al enumerateGroupsWithTypes:ALAssetsGroupAll
+                      usingBlock:enumerateAssetGroupsBlock
+                    failureBlock:assetGroupEnumErrorBlock];
+    
 }
 
 @end

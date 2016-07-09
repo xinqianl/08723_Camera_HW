@@ -13,5 +13,5 @@
 @property (nonatomic, strong) IBOutlet UIImageView *assetImageView;
 @property (nonatomic, strong) UIImage *assetImage;
 @property (nonatomic, strong) NSURL *videoURL;
-@property Boolean *isVideo;
+@property Boolean *isPlayingVideo;
 @end
